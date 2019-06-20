@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--客户映射 指定到dao接口 -->
+<mapper namespace="com.deepexi.user.mapper.UserMapper">
+    <!--id与dao接口的方法名一直，指定结果类型，和参数类型 -->
+
+    <select id="selectPageVo" resultType="com.deepexi.user.domain.eo.User">
+        SELECT * FROM uc_user WHERE age > #{age} limit #{begin},#{size}
+    </select>
+
+    <select id="selectTotalElement" resultType="java.lang.Integer">
+        select count(*) from uc_user;
+    </select>
+
+    <select id="selectById" resultType="com.deepexi.user.domain.eo.User">
+       select * from uc_user where id=#{id}
+    </select>
+
+    <update id="update" parameterType="com.deepexi.user.domain.eo.User" >
+        update uc_user set
+        age = #{age},
+        username=#{userName},
+        usernumber=#{userNumber},
+        nickname=#{nickName},
+        email=#{email},
+        updated_by=#{updatedBy},
+        updated_at=#{updatedAt}
+        where id = #{id};
+
+    </update>
+
+    <delete id="deleteById"  >
+        delete from uc_user where id=#{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.deepexi.user.domain.eo.User" >
+        insert into uc_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="id !=null">
+                id,
+            </if>
+
+            <if test="userName !=null">
+                username,
+            </if>
+
+            <if test="age !=null">
+                age,
+            </if>
+
+            <if test="userNumber !=null">
+                userNumber,
+            </if>
+
+            <if test="nickName !=null">
+                nickName,
+            </if>
+
+            <if test="email !=null">
+                email,
+            </if>
+
+            <if test="tenantId !=null">
+                tenantId,
+            </if>
+
+            <if test="createdBy !=null">
+                createdBy,
+            </if>
+
+            <if test="createdAt !=null">
+                createdAt,
+            </if>
+
+            <if test="updatedBy !=null">
+                updatedBy,
+            </if>
+
+            <if test="updatedAt !=null">
+                updatedAt,
+            </if>
+
+            <if test="dr !=null">
+                dr,
+            </if>
+
+        </trim>
+
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id !=null">
+                #{id},
+            </if>
+
+            <if test="userName !=null">
+                #{userName},
+            </if>
+
+            <if test="age !=null">
+                #{age},
+            </if>
+
+            <if test="userNumber !=null">
+                #{userNumber},
+            </if>
+
+            <if test="nickName !=null">
+                #{nickName},
+            </if>
+
+            <if test="email !=null">
+                #{email},
+            </if>
+
+            <if test="tenantId !=null">
+                #{tenantId},
+            </if>
+
+            <if test="createdBy !=null">
+                #{createdBy},
+            </if>
+
+            <if test="createdAt !=null">
+                #{createdAt},
+            </if>
+
+            <if test="updatedBy !=null">
+                #{updatedBy},
+            </if>
+
+            <if test="updatedAt !=null">
+                #{updatedAt},
+            </if>
+
+            <if test="dr !=null">
+                #{dr},
+            </if>
+        </trim>
+    </insert>
+
+
+
+</mapper>
